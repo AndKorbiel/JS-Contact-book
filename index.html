@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact book app</title>
+
+<!-- My own CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Custom JS -->
+<script type="text/javascript" src="./js/main.js" defer></script>
+<script type="text/javascript" src="./js/validation.js" defer></script>
+</head>
+
+<body>
+<div class="container">
+	<div class="row">
+		<h1>Yours contact book</h1>
+		<button id="add" class="add-contact">+Add contact</button>
+		<div class="col-xs-12 contact-table">
+			<table>
+				<thead>
+					<td>#</td>
+					<td>First name</td>
+					<td>Last name</td>
+					<td>Email adress</td>
+					<td>Phone number</td>
+					<td>Notes</td>
+					<td>Edit</td>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>	
+		</div>
+	</div>
+</div>
+<div id="modal">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>Add new contact</h2>
+				<form id="add_user">
+					<input type="text" class="form-control" id="first_name" placeholder="First name">
+					<input type="text" class="form-control" id="last_name" placeholder="Last name">
+					<input type="email" class="form-control" id="email" placeholder="Email adress">
+					<input type="text" class="form-control" id="phone" placeholder="Phone number">
+					<textarea class="form-control" id="notes" rows="5" placeholder="Notes..."></textarea>
+					<button type="submit" id="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html> 
