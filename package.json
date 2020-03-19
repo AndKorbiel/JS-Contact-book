@@ -1,0 +1,26 @@
+{
+  "name": "js-contact-book",
+  "version": "1.0.0",
+  "description": "Vanilla JS contact book app",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha \"test/*.js\" --recursive --require @babel/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndKorbiel/JS-Contact-book.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndKorbiel/JS-Contact-book/issues"
+  },
+  "homepage": "https://github.com/AndKorbiel/JS-Contact-book#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/register": "^7.8.6",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1"
+  }
+}
