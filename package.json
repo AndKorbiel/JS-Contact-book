@@ -4,7 +4,7 @@
   "description": "Vanilla JS contact book app",
   "main": "index.js",
   "scripts": {
-    "test": "mocha \"test/*.js\" --recursive --require @babel/register"
+    "test": "mocha \"test/*.js\" --recursive --require @babel/register --require jsdom-global/register"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,8 @@
     "@babel/preset-env": "^7.8.7",
     "@babel/register": "^7.8.6",
     "chai": "^4.2.0",
+    "jsdom": "16.2.1",
+    "jsdom-global": "3.0.2",
     "mocha": "^7.1.1"
   }
 }

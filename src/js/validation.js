@@ -21,88 +21,48 @@ const validation = {
     formPhoneValid: true,
     formNotesValid: true,
 
+	checkFormula: function(formulaName, formName, itemNameValid) {
+		const errorClass = 'validation-error';
+		const okClass = 'validation-ok';
+		const rule = validation[formulaName];
+		if (!rule.test(this[formName].value)) {
+			this[formName].classList.remove(okClass);
+			this[formName].classList.add(errorClass);
+			return validation[itemNameValid] = false;
+		} else {
+			this[formName].classList.remove(errorClass);
+			this[formName].classList.add(okClass);
+			return validation[itemNameValid] = true;
+		}
+	},
+
     checkFirstName: function() {
-		this.formFirstName.addEventListener('change', function() { 
-			const errorClass = 'validation-error';
-			const okClass = 'validation-ok';
-			const rule = validation.firstNameFormula;
-			    if (!rule.test(this.value)) {
-			        this.classList.remove(okClass);
-			        this.classList.add(errorClass);
-			        return validation.formFirstNameValid = false;
-			    } else {
-			        this.classList.remove(errorClass);
-			        this.classList.add(okClass);
-			        return validation.formFirstNameValid = true;
-			    }		
+		this.formFirstName.addEventListener('change', ()=> {
+			this.checkFormula("firstNameFormula","formFirstName", "firstNameValid")
 		})
     },
 
     checkLastName: function() {
-		this.formLastName.addEventListener('change', function() { 
-			const errorClass = 'validation-error';
-			const okClass = 'validation-ok';
-			const rule = validation.lastNameFormula;
-			    if (!rule.test(this.value)) {
-			        this.classList.remove(okClass);
-			        this.classList.add(errorClass);
-			        return validation.formLastNameValid = false;
-			    } else {
-			        this.classList.remove(errorClass);
-			        this.classList.add(okClass);
-			        return validation.formLastNameValid = true;
-			    }		
+		this.formLastName.addEventListener('change', ()=> {
+			this.checkFormula("lastNameFormula","formLastName", "formLastNameValid")
 		})
     },
 
     checkEmail: function() {
-		this.formEmail.addEventListener('change', function() { 
-			const errorClass = 'validation-error';
-			const okClass = 'validation-ok';
-			const rule = validation.emailFormula;
-			    if (!rule.test(this.value)) {
-			        this.classList.remove(okClass);
-			        this.classList.add(errorClass);
-			        return validation.formEmailValid = false;
-			    } else {
-			        this.classList.remove(errorClass);
-			        this.classList.add(okClass);
-			        return validation.formEmailValid = true;
-			    }		
+		this.formEmail.addEventListener('change', ()=> {
+			this.checkFormula("emailFormula","formEmail", "formEmailValid")
 		})
     },
 
     checkPhone: function() {
-		this.formPhone.addEventListener('change', function() { 
-			const errorClass = 'validation-error';
-			const okClass = 'validation-ok';
-			const rule = validation.phoneFormula;
-			    if (!rule.test(this.value)) {
-			        this.classList.remove(okClass);
-			        this.classList.add(errorClass);
-			        return validation.formPhoneValid = false;
-			    } else {
-			        this.classList.remove(errorClass);
-			        this.classList.add(okClass);
-			        return validation.formPhoneValid = true;
-			    }		
+		this.formPhone.addEventListener('change', ()=> {
+			this.checkFormula("phoneFormula","formPhone", "formPhoneValid")
 		})
     },
 
     checkNotes: function() {
-		this.formNotes.addEventListener('change', function() { 
-			const errorClass = 'validation-error';
-			const okClass = 'validation-ok';
-			const rule = validation.notesFormula;
-			    if (!rule.test(this.value)) {
-			        this.classList.remove(okClass);
-			        this.classList.add(errorClass);
-			        return validation.formNotesValid = false;
-			    } else {
-			        this.classList.remove(errorClass);
-			        this.classList.add(okClass);
-			        return validation.formNotesValid = true;
-			    }		
+		this.formNotes.addEventListener('change', ()=> {
+			this.checkFormula("notesFormula","formNotes", "formNotesValid")
 		})
     },
 
@@ -117,64 +77,16 @@ const validation = {
         
         this.$formReady.addEventListener('change', function() {
             
-            if (validation.formFirstNameValid == true && validation.formLastNameValid == true && validation.formEmailValid == true && validation.formPhoneValid == true && validation.formNotesValid == true) {
-                validation.$sendButton.disabled = false;
-            }
-            else {
-                validation.$sendButton.disabled = true;
-            }
+            // if (validation.formFirstNameValid == true && validation.formLastNameValid == true && validation.formEmailValid == true && validation.formPhoneValid == true && validation.formNotesValid == true) {
+            //     validation.$sendButton.disabled = false;
+            // }
+            // else {
+            //     validation.$sendButton.disabled = true;
+            // }
         })
     }
-}
-
+};
 
 validation.checkAll();
 
-
-/*
-
-  
-    
-
-
-  /* */
-
-     /* this.check(this.formLastName, this.lastNameFormula, this.formLastNameValid);
-        this.check(this.formEmail, this.emailFormula, this.formEmailValid);
-        this.check(this.formPhone, this.phoneFormula, this.formPhoneValid);
-        this.check(this.formNotes, this.notesFormula, this.formNotesValid); */
-
-           /*  */
-
-      /* */
-
-/*
-
-
-
-/*  check: (input, formula, fieldValidCheck) => {
-        
-		input.addEventListener('change', function() { 
-			const errorClass = 'validation-error';
-			const okClass = 'validation-ok';
-            const rule = formula; 
-
-			    if (!rule.test(this.value)) {
-			        this.classList.remove(okClass);
-                    this.classList.add(errorClass);
-                    fieldValidCheck = false
-            
-                    return fieldValidCheck
-			        
-			    } else {
-			        this.classList.remove(errorClass);
-                    this.classList.add(okClass);
-                    fieldValidCheck = true
-                   
-                    return fieldValidCheck
-                }	
-                
-        })
-        return fieldValidCheck = true
-    },
-    */
+export default validation;
