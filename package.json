@@ -1,11 +1,14 @@
 {
   "name": "js-contact-book",
+  "homepage": "https://andkorbiel.github.io/JS-Contact-book/",
   "version": "1.0.0",
   "description": "Vanilla JS contact book app",
   "main": "index.js",
   "scripts": {
     "test": "mocha \"test/*.js\" --recursive --require @babel/register --require jsdom-global/register --require mock-local-storage",
-    "build": "babel src -d dist"
+    "build": "babel src -d dist",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,7 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.8.6",
     "chai": "^4.2.0",
+    "gh-pages": "^2.2.0",
     "jsdom": "16.2.1",
     "jsdom-global": "3.0.2",
     "mocha": "^7.1.1",
