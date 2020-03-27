@@ -37,11 +37,25 @@ describe("Validation formulas rules", ()=>{
 });
 
 describe("Validation functions", ()=>{
-    beforeEach(()=>{
-        document.getElementById('first_name').innerHTML = '<input type="text" class="form-control" id="first_name" placeholder="First name">';
+    it("should return false when value is not matching formula", ()=>{
+       const formVal = {
+           classList: 'ok',
+           formulaName: 'firstNameFormula',
+           formName: 'formFirstName',
+           itemNameValid: 'firstNameValid',
+           value: 'test test'
+       };
+       expect(validation.checkFormula(formVal.formulaName, formVal.formName, formVal.itemNameValid, formVal.value)).to.be.false;
     });
-    it("should return false when value is wrong", ()=>{
-       const firsName = 'adsa das';
-       expect(validation.checkFirstName(firsName)).to.be.false;
-    });
+
+    it("should return true when value is mattching formularz", ()=> {
+        const formVal = {
+            classList: 'ok',
+            formulaName: 'emailFormula',
+            formName: 'formEmail',
+            itemNameValid: 'formEmailValid',
+            value: 'test@test.test'
+        };
+        expect(validation.checkFormula(formVal.formulaName, formVal.formName, formVal.itemNameValid, formVal.value)).to.be.true;
+    })
 });

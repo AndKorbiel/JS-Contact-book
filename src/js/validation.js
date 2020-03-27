@@ -21,53 +21,59 @@ const validation = {
     formPhoneValid: true,
     formNotesValid: true,
 
-	checkFormula: function(formulaName, formName, itemNameValid) {
+	checkFormula: function(formulaName, formName, itemNameValid, value) {
 		const errorClass = 'validation-error';
 		const okClass = 'validation-ok';
 		const rule = validation[formulaName];
-		if (!rule.test(this[formName].value)) {
-			this[formName].classList.remove(okClass);
-			this[formName].classList.add(errorClass);
+
+		if (!rule.test(value)) {
+            if (this[formName] != null) {
+                if (this[formName].classList != null) {
+                    this[formName].classList.remove(okClass);
+                    this[formName].classList.add(errorClass);
+                }
+            }
 			return validation[itemNameValid] = false;
 		} else {
-			this[formName].classList.remove(errorClass);
-			this[formName].classList.add(okClass);
+            if (this[formName] != null) {
+                this[formName].classList.remove(errorClass);
+                this[formName].classList.add(okClass);
+            }
 			return validation[itemNameValid] = true;
 		}
 	},
 
     checkFirstName: function() {
-		this.formFirstName.addEventListener('change', ()=> {
-			this.checkFormula("firstNameFormula","formFirstName", "firstNameValid")
+		this.formFirstName.addEventListener('change', (event)=> {
+			this.checkFormula("firstNameFormula","formFirstName", "firstNameValid", event.target.value)
 		})
     },
 
     checkLastName: function() {
-		this.formLastName.addEventListener('change', ()=> {
-			this.checkFormula("lastNameFormula","formLastName", "formLastNameValid")
+		this.formLastName.addEventListener('change', (event)=> {
+			this.checkFormula("lastNameFormula","formLastName", "formLastNameValid", event.target.value)
 		})
     },
 
     checkEmail: function() {
-		this.formEmail.addEventListener('change', ()=> {
-			this.checkFormula("emailFormula","formEmail", "formEmailValid")
+		this.formEmail.addEventListener('change', (event)=> {
+			this.checkFormula("emailFormula","formEmail", "formEmailValid", event.target.value)
 		})
     },
 
     checkPhone: function() {
-		this.formPhone.addEventListener('change', ()=> {
-			this.checkFormula("phoneFormula","formPhone", "formPhoneValid")
+		this.formPhone.addEventListener('change', (event)=> {
+			this.checkFormula("phoneFormula","formPhone", "formPhoneValid", event.target.value)
 		})
     },
 
     checkNotes: function() {
-		this.formNotes.addEventListener('change', ()=> {
-			this.checkFormula("notesFormula","formNotes", "formNotesValid")
+		this.formNotes.addEventListener('change', (event)=> {
+			this.checkFormula("notesFormula","formNotes", "formNotesValid", event.target.value)
 		})
     },
 
     checkAll: function() {
-
         validation.$sendButton.disabled = true;
         this.checkFirstName();
         this.checkLastName();
@@ -77,16 +83,21 @@ const validation = {
         
         this.$formReady.addEventListener('change', function() {
             
-            // if (validation.formFirstNameValid == true && validation.formLastNameValid == true && validation.formEmailValid == true && validation.formPhoneValid == true && validation.formNotesValid == true) {
-            //     validation.$sendButton.disabled = false;
-            // }
-            // else {
-            //     validation.$sendButton.disabled = true;
-            // }
+            if (validation.formFirstNameValid == true && validation.formLastNameValid == true && validation.formEmailValid == true && validation.formPhoneValid == true && validation.formNotesValid == true) {
+                if (validation.$sendButton != null) {
+                    validation.$sendButton.disabled = false;
+                }
+            }
+            else {
+                if (validation.$sendButton != null) {
+                    validation.$sendButton.disabled = true;
+                }
+            }
         })
     }
 };
-
-validation.checkAll();
+document.addEventListener("DOMContentLoaded", function() {
+    validation.checkAll()
+});
 
 export default validation;
