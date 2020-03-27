@@ -1,8 +1,7 @@
-(function() {
 
 const $modal = document.querySelector('#modal');
 const $modalTitle = document.querySelector('#modal h2');
-const $modaFormFirstName = document.querySelector('#first_name');
+const $modalFormFirstName = document.querySelector('#first_name');
 const $modalFormLastName = document.querySelector('#last_name');
 const $modalFormEmail = document.querySelector('#email');
 const $modalFormPhone = document.querySelector('#phone');
@@ -19,44 +18,45 @@ let contactPositionEdit = function (positionId) {
         $modal.classList.add('open');
         $modalTitle.innerHTML = 'Edit contact';
 
-        let retrivedFromStorage = JSON.parse(localStorage.getItem(positionId));
+        let takenFromStorage = JSON.parse(localStorage.getItem(positionId));
 
-        $modaFormFirstName.value = retrivedFromStorage.firstName;
-        $modalFormLastName.value = retrivedFromStorage.lastName;
-        $modalFormEmail.value = retrivedFromStorage.email;
-        $modalFormPhone.value = retrivedFromStorage.phone;
-        $modalFormNotes.value = retrivedFromStorage.notes;
+        $modalFormFirstName.value = takenFromStorage.firstName;
+        $modalFormLastName.value = takenFromStorage.lastName;
+        $modalFormEmail.value = takenFromStorage.email;
+        $modalFormPhone.value = takenFromStorage.phone;
+        $modalFormNotes.value = takenFromStorage.notes;
 
         currentGlobalId = positionId;
         $addUser.removeEventListener('submit', addContactOnFormOnSubmit, false);
         $addUser.addEventListener('submit', updateContactOnEditSubmit);
     }  
       
-}
+};
 
 let contactPositionDelete = function (positionId, element) {
 
     return function () {
         localStorage.removeItem(positionId);
         element.innerHTML = '';
-        element.classList.remove('contact-pos')
+        element.classList.remove('contact-pos');
 
-        let ids = document.querySelectorAll('.ids')
+        let ids = document.querySelectorAll('.ids');
 
         let innerCounter = (function () {
             var counter = 0;
             return function () {counter += 1; return counter}
-        })()
+        })();
 
         ids.forEach(function(element) {
             element.innerHTML = innerCounter()
         })
     }
     
-}
+};
 
-function currentId() {
+export function currentId() {
     let currentId = localStorage.getItem('contact_cureent_id');
+
     if (currentId == undefined || currentId == null) {
         return 0
     }
@@ -68,7 +68,7 @@ function currentId() {
 function toggleModalWithoutData() {
     $modal.classList.add('open');
     $modalTitle.innerHTML = 'Add contact';
-    $modaFormFirstName.value = '';
+    $modalFormFirstName.value = '';
     $modalFormLastName.value =  '';
     $modalFormEmail.value =  '';
     $modalFormPhone.value =  '';
@@ -113,14 +113,16 @@ function updateContactInHTML(el) {
 function onFormSubmit(id) {   
     $modal.classList.remove('open');
 
-    return contact = {
+    var contact = {
         id: id,
-        firstName: $modaFormFirstName.value,
+        firstName: $modalFormFirstName.value,
         lastName: $modalFormLastName.value,
         email: $modalFormEmail.value,
         phone: $modalFormPhone.value,
         notes: $modalFormNotes.value,
     };
+
+    return contact
 }
 
 function addContactOnFormOnSubmit(e) {
@@ -185,15 +187,13 @@ function contactListButtonsEvents() {
     })
 }
 
-$addButton.addEventListener('click', toggleModalWithoutData);
-
-$modal.addEventListener('click', function(e) {
-    if (e.target == $modal) {
-        $modal.classList.remove('open');
-    }
-})
+// $addButton.addEventListener('click', toggleModalWithoutData);
+//
+// $modal.addEventListener('click', function(e) {
+//     if (e.target == $modal) {
+//         $modal.classList.remove('open');
+//     }
+// })
 
 addContactsFromStorage();
 contactListButtonsEvents();
-
-})()

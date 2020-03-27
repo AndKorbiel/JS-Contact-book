@@ -4,7 +4,8 @@
   "description": "Vanilla JS contact book app",
   "main": "index.js",
   "scripts": {
-    "test": "mocha \"test/*.js\" --recursive --require @babel/register --require jsdom-global/register"
+    "test": "mocha \"test/*.js\" --recursive --require @babel/register --require jsdom-global/register --require mock-local-storage",
+    "build": "babel src -d dist"
   },
   "repository": {
     "type": "git",
@@ -17,12 +18,14 @@
   },
   "homepage": "https://github.com/AndKorbiel/JS-Contact-book#readme",
   "devDependencies": {
-    "@babel/core": "^7.8.7",
-    "@babel/preset-env": "^7.8.7",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.8.6",
     "chai": "^4.2.0",
     "jsdom": "16.2.1",
     "jsdom-global": "3.0.2",
-    "mocha": "^7.1.1"
+    "mocha": "^7.1.1",
+    "mock-local-storage": "^1.1.11"
   }
 }
